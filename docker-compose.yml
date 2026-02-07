@@ -5,7 +5,7 @@ services:
     ports:
       - "9092:9092"    # External access
       - "9093:9093"    # Controller
-      - "29092:29092"  # Optional: another port for clarity
+      - "29092:29092"  # Internal access
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
