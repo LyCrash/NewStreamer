@@ -26,17 +26,17 @@ pip install -r requirements.txt
 
 ## **Steps to launch the project**
 
-1. Create a Kafka topic "newsapi"
+1. Start the full pipline with Docker compose
+```bash
+docker compose up -d
+```
+2. Create a Kafka topic "newsapi"
 ```bash
 docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --create --topic newsapi --bootstrap-server localhost:9092
 ```
-2. Verify that the topic exists
+3. Verify that the topic exists
 ```bash
 docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
-```
-3. Start the full pipline with Docker compose
-```bash
-docker compose up -d
 ```
 4. Launch the kafka producer
 ```bash
@@ -52,7 +52,11 @@ curl http://localhost:9200/_cat/indices?v
 ```
 7. Explore Data in Kibana: http://localhost:5601
 
-8. To Stop all containers:
+8. To Stop all containers (data saved inside containers):
+```bash
+docker compose stop
+```
+9. To Stop & Delete all containers:
 ```bash
 docker compose down -v
 ```
