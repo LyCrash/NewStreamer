@@ -10,6 +10,7 @@ import requests
 from kafka import KafkaProducer
 import os
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 
 KAFKA_BOOTSTRAP_SERVER = "localhost:9092"
 KAFKA_TOPIC = "newsapi"
@@ -37,7 +38,8 @@ def get_news(endpoint: str) -> list[dict]:
             "title": article.get("title"),
             "description": article.get("description"),
             "url": article.get("url"),
-            "published_at": article.get("publishedAt")
+            "published_at": article.get("publishedAt"),
+            "content": article.get("content")
         })
 
     return articles
@@ -50,22 +52,26 @@ def main():
     # Launch the kafka producer
     producer = kafka_producer()
 
-    countries = ["us", "fr", "de"]
     poll_interval = 300  # 5 minutes (important: rate limits)
 
     while True:
-        for country in countries:
-            endpoint = (
-                f"https://newsapi.org/v2/top-headlines"
-                f"?country={country}&apiKey={newsapi_key}"
-            )
 
-            articles = get_news(endpoint)
-            print("Articles scrapped successfully !")
+        topics = "technology OR AI OR innovation"
+        endpoint = (f"https://newsapi.org/v2/everything?"
+            f"q={topics}&"  # Broad tech topics for varied content
+            f"language=en&"  # Consistent language for text analysis
+            f"pageSize=100&"  # Maximum articles per request
+            f"sortBy=publishedAt&"  # Good for time series analysis
+            f"from={(datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')}&"  # Last 7 days
+            f"to={datetime.now().strftime('%Y-%m-%d')}&"  # Up to today
+            f"apiKey={newsapi_key}")
 
-            for article in articles:
-                producer.send(KAFKA_TOPIC, value=article)
-                print(f"Published: {article['title']}")
+        articles = get_news(endpoint)
+        print("Articles scrapped successfully !")
+
+        for article in articles:
+            producer.send(KAFKA_TOPIC, value=article)
+            print(f"Published: {article['title']}")
 
         producer.flush()
         print(f"Waiting {poll_interval} seconds...\n")
