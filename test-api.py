@@ -1,10 +1,15 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+# Find the .env file and load the variables into the environment
+load_dotenv()
 
 # [ADVANCED] Trafic routier parisien
 # url = https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/comptages-routiers-permanents/records?limit=20
 
 # Flights: aviationstack api
-# api_key = '41595288962800cd1756fc53d2f20442'
+# api_key = os.getenv("FLIGHTS_KEY")
 # url = 'https://api.aviationstack.com/v1/flights'
 # params = {
 #   'access_key': api_key
@@ -13,12 +18,14 @@ import requests
 
 
 # NEWS API
-api_key = 'd8918bd42ba043dd8d48974c64c86a13'
-url = ('https://newsapi.org/v2/everything?'
-       'q=Apple&'
-       'from=2026-01-04&'
-       'sortBy=popularity&'
-       'apiKey=d8918bd42ba043dd8d48974c64c86a13')
+api_key = os.getenv("NEWSAPI_KEY")
+query = "Apple"
+date = "2026-02-04"
+url = (f"https://newsapi.org/v2/everything?"
+       f"q={query}&"
+       f"from={date}&"
+       f"sortBy=popularity&"
+       f"apiKey={api_key}")
 
 api_result = requests.get(url)
 
