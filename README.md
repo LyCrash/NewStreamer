@@ -14,12 +14,13 @@ This project demonstrates a complete data pipeline:
 ## **Prerequisites**
 
 - Docker & Docker Compose installed
+- Create `.env` file on root folder and add your NEWSAPI_KEY 
 - Python 3.10+ (with `venv` recommended)
 - Required Python packages:
-
 ```bash
 pip install -r requirements.txt
 ```
+
 ---
 
 ## **Steps to launch the project**
