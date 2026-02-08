@@ -3,7 +3,7 @@
 **NEWStreamer** is a real-time news streaming pipeline that ingests technology-related articles from NewsAPI every 5 minutes, streams them through Kafka, processes them with Logstash, indexes them in Elasticsearch for search and analytics via Kibana, and is designed to be extended with Spark or Hadoop for large-scale processing and advanced analytics.
 
 **Pipeline overview:**
-NewsAPI → Kafka → Logstash → Elasticsearch → Kibana → (Spark / Hadoop)
+NewsAPI → Kafka → Logstash → Elasticsearch → Kibana → Spark (Batch Analytics)
 ---
 
 ## 📌 TL;DR / Index
@@ -133,13 +133,24 @@ Kibana dashboards turn raw streamed data into actionable insights.
 
 ---
 
-### 6. Spark / Hadoop – Future Extension
+### 6. Spark – Batch Analytics (Dockerized)
+### 6. Spark – Batch Analytics (Dockerized)
 
-**Planned extension**
+Apache Spark is used in this project to perform **batch analytics** on data that has already been indexed in Elasticsearch.
 
-This pipeline is designed to be extended with:
-- **Apache Spark (Structured Streaming)** for advanced real-time analytics and machine learning
-- **Hadoop / HDFS** for long-term storage and batch processing
+The Spark job reads data directly from Elasticsearch indices (`newsapi-*`) using the Elasticsearch-Hadoop connector.  
+It is executed **inside a Docker container**, ensuring full reproducibility without requiring a local Spark installation.
+
+The batch processing computes several analytical results, including:
+- Number of news articles per source
+- Number of articles per day
+- Top authors by article count
+- Most frequent keywords in article titles
+- Average length of article content and titles
+
+The results are exported as **CSV files** to a shared Docker volume, making them directly accessible on the host machine.
+
+This batch processing step is intentionally executed **after** the real-time streaming pipeline (Kafka → Logstash → Elasticsearch) to avoid race conditions and ensure that data is available before analysis.
 
 Future work will include:
 - Reading directly from Kafka topics
@@ -188,13 +199,17 @@ curl http://localhost:9200/_cat/indices?v
 ```
 7. Explore Data in Kibana: http://localhost:5601
 
+8. Run Spark batch analytics (after data is indexed in Elasticsearch)
+```bash
+docker exec -it spark /opt/spark/bin/spark-submit /app/news_analysis.py
+
 ## **Stopping the pipeline**
 
-8. To Stop all containers (data saved inside containers):
+9. To Stop all containers (data saved inside containers):
 ```bash
 docker compose stop
 ```
-9. To Stop & Delete all containers:
+10. To Stop & Delete all containers:
 ```bash
 docker compose down -v
 ```
