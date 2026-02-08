@@ -51,7 +51,19 @@ services:
     image: docker.elastic.co/kibana/kibana:8.12.0
     container_name: kibana
     ports:
-      - "5601:5601"
+      - "5602:5601"
     depends_on:
       elasticsearch:
         condition: service_healthy
+
+  spark:
+    build: ./spark
+    container_name: spark
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    volumes:
+      - ./spark/output:/app/spark/output
+
+
+
