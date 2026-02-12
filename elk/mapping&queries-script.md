@@ -137,6 +137,24 @@ GET newsapi-*/_search
   }
 }
 ```
+Top 5 articles per author
+```json
+GET newsapi-*/_search
+{
+  "size": 0,
+  "aggs": {
+    "articles_by_author": {
+      "terms": {
+        "field": "author.keyword",
+        "size": 5,
+        "order": {
+          "_count": "desc"
+        }
+      }
+    }
+  }
+}
+```
 
 
 ### 3. Requête N-gram
@@ -153,48 +171,23 @@ GET newsapi-*/_search
   }
 }
 ```
-GET newsapi-*/_search
-{
-  "size": 0,
-  "aggs": {
-    "articles_by_author": {
-      "terms": {
-        "field": "author.keyword",
-        "size": 5,
-        "order": {
-          "_count": "desc"
-        }
-      }
-    }
-  }
 
-}
 ### 4. Requête floue (fuzzy search)
-Typo-tolerant search (e.g. "artifical inteligence")
+Fetch all contents that contains the word business or close to it
 ```json
-GET newsapi-*/_search
-{
-  "query": {
-    "match": {
-      "title": {
-        "query": "artifical inteligence",
-        "fuzziness": "AUTO"
-      }
-    }
-  }
-}
-```
-### fetch all contents that contains the word business or close to it
 GET newsapi-2026.02/_search
 {
   "query": {
     "fuzzy": {
-      "content": {"value":"buiness",
+      "content": 
+      {
+        "value":"buiness",
         "fuzziness": 2
       }
     }
   }
 }
+```
 
 ### 5. Série temporelle
 Number of articles per day

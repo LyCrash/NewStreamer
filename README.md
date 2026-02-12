@@ -134,7 +134,6 @@ Kibana dashboards turn raw streamed data into actionable insights.
 ---
 
 ### 6. Spark – Batch Analytics (Dockerized)
-### 6. Spark – Batch Analytics (Dockerized)
 
 Apache Spark is used in this project to perform **batch analytics** on data that has already been indexed in Elasticsearch.
 
@@ -197,11 +196,12 @@ docker logs logstash --tail 50
 ```bash
 curl http://localhost:9200/_cat/indices?v
 ```
-7. Explore Data in Kibana: http://localhost:5601
+7. Explore Data in Kibana: http://localhost:5602
 
 8. Run Spark batch analytics (after data is indexed in Elasticsearch)
 ```bash
 docker exec -it spark /opt/spark/bin/spark-submit /app/news_analysis.py
+```
 
 ## **Stopping the pipeline**
 
