@@ -15,7 +15,7 @@ NewsAPI → Kafka → Logstash → Elasticsearch → Kibana → Spark (Batch Ana
   - [3. Logstash – Stream Processing](#3-logstash--stream-processing)
   - [4. Elasticsearch – Storage & Search](#4-elasticsearch--storage--search)
   - [5. Kibana – Visualization & Analytics](#5-kibana--visualization--analytics)
-  - [6. Spark / Hadoop – Future Extension](#6-spark--hadoop--future-extension)
+  - [6. Spark – Batch Analytics](#6-spark--batch-analytics)
 - [Prerequisites](#prerequisites)
 - [Steps to Launch the Project](#steps-to-launch-the-project)
 - [Stopping the Pipeline](#stopping-the-pipeline)
@@ -133,7 +133,7 @@ Kibana dashboards turn raw streamed data into actionable insights.
 
 ---
 
-### 6. Spark – Batch Analytics (Dockerized)
+### 6. Spark – Batch Analytics
 
 Apache Spark is used in this project to perform **batch analytics** on data that has already been indexed in Elasticsearch.
 
