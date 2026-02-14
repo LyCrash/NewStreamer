@@ -116,7 +116,7 @@ if NewsAPI returns the same article again, it updates the existing document inst
 - Avoids duplicate documents caused by periodic polling
 - Aligns with Elasticsearch best practices
 
-# My Contribution: Kibana & Spark Analytics
+# Kibana & Spark Analytics
 
 **Components:** Real-time Visualization (Kibana) + Batch Analytics (Apache Spark)
 
