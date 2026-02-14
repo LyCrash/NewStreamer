@@ -130,7 +130,7 @@ if NewsAPI returns the same article again, it updates the existing document inst
 
 **File:** [`kibana/full_dashboard.png`](../kibana/full_dashboard.png)
 
-![Full Dashboard](../kibana/full_dashboard.png)
+![Full Dashboard](./kibana/full_dashboard.png)
 
 **Visualizations:**
 
@@ -155,9 +155,9 @@ if NewsAPI returns the same article again, it updates the existing document inst
 
 #### 2. Top 10 Active Sources
 
-**File:** [`kibana/nb_of_news_per_top10_active_sources.png`](../kibana/nb_of_news_per_top10_active_sources.png)
+**File:** [`kibana/nb_of_news_per_top10_active_sources.png`](./kibana/nb_of_news_per_top10_active_sources.png)
 
-![Top Sources](../kibana/nb_of_news_per_top10_active_sources.png)
+![Top Sources](./kibana/nb_of_news_per_top10_active_sources.png)
 
 - Type: Horizontal bar chart
 - Field: `source.keyword`
@@ -167,7 +167,7 @@ if NewsAPI returns the same article again, it updates the existing document inst
 
 #### 3. Data Explorer View
 
-**File:** [`kibana/data_view_created.png`](../kibana/data_view_created.png)
+**File:** [`kibana/data_view_created.png`](./kibana/data_view_created.png)
 
 ![Data View](../kibana/data_view_created.png)
 
@@ -218,7 +218,7 @@ news_by_source.coalesce(1).write \
     .csv("spark/output/news_by_source")
 ```
 
-**Output:** [`spark/output/news_by_source/part-00000-*.csv`](../spark/output/news_by_source/)
+**Output:** [`spark/output/news_by_source/part-00000-*.csv`](./spark/output/news_by_source/)
 
 **Result:**
 ```csv
@@ -228,7 +228,7 @@ The Verge,38
 Wired,32
 ```
 
-**Screenshot:** [`spark/screenshots/news_by_source.png`](../spark/screenshots/news_by_source.png)
+**Screenshot:** [`spark/screenshots/news_by_source.png`](./spark/screenshots/news_by_source.png)
 
 ---
 
@@ -247,7 +247,7 @@ news_by_day.coalesce(1).write \
     .csv("spark/output/news_by_day")
 ```
 
-**Output:** [`spark/output/news_by_day/part-00000-*.csv`](../spark/output/news_by_day/)
+**Output:** [`spark/output/news_by_day/part-00000-*.csv`](./spark/output/news_by_day/)
 
 **Result:**
 ```csv
@@ -257,7 +257,7 @@ date,count
 2026-02-03,25
 ```
 
-**Screenshot:** [`spark/screenshots/nb_of_news_by_day.png`](../spark/screenshots/nb_of_news_by_day.png)
+**Screenshot:** [`spark/screenshots/nb_of_news_by_day.png`](./spark/screenshots/nb_of_news_by_day.png)
 
 ---
 
@@ -277,7 +277,7 @@ top_authors.coalesce(1).write \
     .csv("spark/output/top_authors")
 ```
 
-**Output:** [`spark/output/top_authors/part-00000-*.csv`](../spark/output/top_authors/)
+**Output:** [`spark/output/top_authors/part-00000-*.csv`](./spark/output/top_authors/)
 
 **Result:**
 ```csv
@@ -287,7 +287,7 @@ Will Mccurdy,38
 Adam Downer,35
 ```
 
-**Screenshot:** [`spark/screenshots/top_authors.png`](../spark/screenshots/top_authors.png)
+**Screenshot:** [`spark/screenshots/top_authors.png`](./spark/screenshots/top_authors.png)
 
 ---
 
@@ -317,7 +317,7 @@ top_keywords.coalesce(1).write \
     .csv("spark/output/top_keywords")
 ```
 
-**Output:** [`spark/output/top_keywords/part-00000-*.csv`](../spark/output/top_keywords/)
+**Output:** [`spark/output/top_keywords/part-00000-*.csv`](./spark/output/top_keywords/)
 
 **Result:**
 ```csv
@@ -327,7 +327,7 @@ artificial,142
 intelligence,138
 ```
 
-**Screenshot:** [`spark/screenshots/top_keywords.png`](../spark/screenshots/top_keywords.png)
+**Screenshot:** [`spark/screenshots/top_keywords.png`](./spark/screenshots/top_keywords.png)
 
 ---
 
@@ -346,7 +346,7 @@ content_stats.coalesce(1).write \
     .csv("spark/output/content_stats")
 ```
 
-**Output:** [`spark/output/content_stats/part-00000-*.csv`](../spark/output/content_stats/)
+**Output:** [`spark/output/content_stats/part-00000-*.csv`](./spark/output/content_stats/)
 
 **Result:**
 ```csv
@@ -354,7 +354,7 @@ avg_content_length,avg_title_length
 2847.52,68.34
 ```
 
-**Screenshot:** [`spark/screenshots/content_stats.png`](../spark/screenshots/content_stats.png)
+**Screenshot:** [`spark/screenshots/content_stats.png`](./spark/screenshots/content_stats.png)
 
 ---
 
@@ -431,19 +431,19 @@ Job completed successfully!
 ## 📁 All Outputs
 
 **Kibana Dashboards:**
-- [`kibana/full_dashboard.png`](../kibana/full_dashboard.png)
-- [`kibana/nb_of_news_per_top10_active_sources.png`](../kibana/nb_of_news_per_top10_active_sources.png)
-- [`kibana/data_view_created.png`](../kibana/data_view_created.png)
+- [`kibana/full_dashboard.png`](./kibana/full_dashboard.png)
+- [`kibana/nb_of_news_per_top10_active_sources.png`](./kibana/nb_of_news_per_top10_active_sources.png)
+- [`kibana/data_view_created.png`](./kibana/data_view_created.png)
 
 **Spark CSV Results:**
-- [`spark/output/news_by_source/`](../spark/output/news_by_source/)
-- [`spark/output/news_by_day/`](../spark/output/news_by_day/)
-- [`spark/output/top_authors/`](../spark/output/top_authors/)
-- [`spark/output/top_keywords/`](../spark/output/top_keywords/)
-- [`spark/output/content_stats/`](../spark/output/content_stats/)
+- [`spark/output/news_by_source/`](./spark/output/news_by_source/)
+- [`spark/output/news_by_day/`](./spark/output/news_by_day/)
+- [`spark/output/top_authors/`](./spark/output/top_authors/)
+- [`spark/output/top_keywords/`](./spark/output/top_keywords/)
+- [`spark/output/content_stats/`](./spark/output/content_stats/)
 
 **Spark Screenshots:**
-- All visualizations in [`spark/screenshots/`](../spark/screenshots/)
+- All visualizations in [`spark/screenshots/`](./spark/screenshots/)
 
 ---
 
